@@ -1,0 +1,18 @@
+{
+  "dependencies": {
+    "@supabase/supabase-js": "^2.47.6",
+    "body-parser": "^1.20.3",
+    "express": "^4.21.2",
+    "nodemon": "^3.1.7"
+  },
+  "name": "inst377-group-project",
+  "version": "1.0.0",
+  "description": "Weather travel app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon -e js,html,css,json --watch ."
+  },
+  "author": "Jordon Farrell",
+  "license": "ISC"
+}
