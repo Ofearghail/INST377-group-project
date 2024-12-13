@@ -14,7 +14,7 @@ app.use(express.static(__dirname + '/public'));
 
 
 app.get('/', (req, res) => {
-    res.sendFile('public/index.html');
+    res.sendFile('public/index.html', { root: __dirname });
 });
 
 app.get('/cities', async (req, res) => {
@@ -27,10 +27,26 @@ app.get('/cities', async (req, res) => {
     res.send(data);
 });
 
-app.post('/city', (req, res) => {
+app.post('/city', async (req, res) => {
     console.log('POST request received at /city');
-    console.log('Request body:', req);
-    res.send('Hello from the server!');
+    console.log('Request body:', req.body);
+
+    const cityName = req.body.city_name;
+    const latitude = req.body.latitude;
+    const longitude = req.body.longitude;
+
+    const {data, error} = await supabase
+        .from('cities')
+        .insert([{city_name: cityName, latitude: latitude, longitude: longitude}])
+        .select();
+
+    if (error) {
+        console.log('Error inserting city:', error);
+        res.send('Error inserting city');
+    } else {
+        console.log('City inserted successfully:', data);
+        res.send('City inserted successfully');
+    }
 });
 
 app.listen(port, () => {
