@@ -22,14 +22,12 @@ app.get('/cities', async (req, res) => {
         .from('cities')
         .select('*');
 
-    console.log('Data: ', data);
-    console.log('Error: ', error);
+
     res.send(data);
 });
 
 app.post('/city', async (req, res) => {
-    console.log('POST request received at /city');
-    console.log('Request body:', req.body);
+
 
     const cityName = req.body.city_name;
     const latitude = req.body.latitude;
@@ -41,10 +39,8 @@ app.post('/city', async (req, res) => {
         .select();
 
     if (error) {
-        console.log('Error inserting city:', error);
         res.send('Error inserting city');
     } else {
-        console.log('City inserted successfully:', data);
         res.send('City inserted successfully');
     }
 });
