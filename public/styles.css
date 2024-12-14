@@ -130,3 +130,18 @@ body {
 .hidden {
   display: none;
 }
+
+#rainChart, #tempChart {
+  min-height: 400px;
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+#chart-container {
+  display: flex;
+  justify-content: center;
+  gap: 2em;
+  margin-top: 2em;
+  color: white;
+}
