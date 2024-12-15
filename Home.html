@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Finder</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #fdfbf3;
+        }
+        /* Top Navigation */
+        .top-nav {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            padding: 10px;
+            border-bottom: 2px solid #ccc;
+            background: #fafafa;
+        }
+        .top-nav a {
+            text-decoration: none;
+            color: black;
+            font-weight: bold;
+        }
+        /* Form Section */
+        .form-container {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .form-container input[type="text"],
+        .form-container input[type="date"] {
+            padding: 5px;
+            font-size: 1rem;
+        }
+        .form-container button {
+            padding: 5px 10px;
+            background-color: #ccc;
+            border: 1px solid #999;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+        .form-container button:hover {
+            background-color: #bbb;
+        }
+        /* Map Section */
+        .map-container {
+            width: 80%;
+            margin: 0 auto;
+            height: 300px;
+            border: 2px solid black;
+        }
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        /* Results Section */
+        .results-container {
+            width: 80%;
+            margin: 20px auto;
+            padding: 10px;
+            border: 2px solid black;
+            font-size: 1.5rem;
+            font-weight: bold;
+            background-color: #fafafa;
+        }
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 10px;
+            margin-top: 20px;
+            border-top: 2px solid #ccc;
+            font-size: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <div class="top-nav">
+        <a href="Home.html">Home</a>
+        <a href="About.html">About</a>
+        <a href="Functionality Page.html">Functionality Page</a>
+    </div>
+
+    <!-- Form Section -->
+    <div class="form-container">
+        <label>Start Date: <input type="date" id="start-date"></label>
+        <label>End Date: <input type="date" id="end-date"></label>
+        <label>Zip Code: <input type="text" id="zip-code" placeholder="Enter Zip"></label>
+        <button onclick="fetchWeather()">Find Weather</button>
+    </div>
+
+    <!-- Map Section -->
+    <div class="map-container" id="map-container">
+        <iframe id="map" src="" allowfullscreen></iframe>
+    </div>
+
+    <!-- Results Section -->
+    <div class="results-container" id="results">
+        Weather Results
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        Contact Us
+    </div>
+
+    <script>
+        async function fetchWeather() {
+            const zipCode = document.getElementById('zip-code').value;
+            const startDate = document.getElementById('start-date').value;
+            const endDate = document.getElementById('end-date').value;
+            const mapFrame = document.getElementById('map');
+            const results = document.getElementById('results');
+
+            if (!zipCode) {
+                alert('Please enter a valid Zip Code');
+                return;
+            }
+
+            try {
+                // Convert ZIP Code to lat/long using OpenStreetMap's Nominatim API
+                const response = await fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${zipCode}`);
+                const geoData = await response.json();
+                if (!geoData || geoData.length === 0) throw new Error('Invalid Zip Code');
+                const { lat, lon } = geoData[0];
+                
+                // Update map to show the ZIP code area
+                mapFrame.src = `https://www.google.com/maps?q=${lat},${lon}&output=embed`;
+                
+                // Fetch weather data
+                const weatherResponse = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&daily=temperature_2m_min,temperature_2m_max&start_date=${startDate}&end_date=${endDate}`);
+                const weatherData = await weatherResponse.json();
+
+                // Display weather results
+                const tempMin = weatherData.daily.temperature_2m_min;
+                const tempMax = weatherData.daily.temperature_2m_max;
+                let weatherHTML = '<h3>Weather Results:</h3><ul>';
+                for (let i = 0; i < tempMin.length; i++) {
+                    weatherHTML += `<li>Day ${i + 1}: Min Temp: ${tempMin[i]}&#8451;, Max Temp: ${tempMax[i]}&#8451;</li>`;
+                }
+                weatherHTML += '</ul>';
+                results.innerHTML = weatherHTML;
+            } catch (error) {
+                results.innerHTML = `<p style='color: red;'>Error: ${error.message}</p>`;
+            }
+        }
+    </script>
+</body>
+</html>
