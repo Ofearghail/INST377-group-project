@@ -155,11 +155,9 @@ body {
 }
 
 .about-container {
-    position: fixed;
+    text-align: center;
     top: 25%;
     left: 50%;
-    transform: translate(-50%, -50%);
-    justify-content: center;
     padding: 50px;
     margin: auto;
     text-align: center;
