@@ -37,6 +37,7 @@ citySearch.addEventListener("input", async (e) => {
                     dropdown.classList.add("hidden");
                     const weatherData = await fetchWeatherForcast(latitude, longitude);
                     renderChart(weatherData);
+                    generateMap(latitude, longitude);
                 });
 
                 dropdown.appendChild(dropdownItem);
@@ -186,9 +187,20 @@ function renderChart(weatherData) {
           }
       }
   });
-  
+}
 
+let map;
+function generateMap(latitude, longitude) {
+    console.log("Generating map for:", latitude, longitude);
 
-
-
+    if (!map) {
+        map = L.map('map').setView([latitude, longitude], 13);
+        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 15,
+            attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+        }).addTo(map);
+    } else {
+       
+        map.setView([latitude, longitude], 13);
+    }
 }
