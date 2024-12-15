@@ -21,11 +21,12 @@
         </ul>
     </div>
 
-    
-
     <div id="search-container">
-        <input type="text" id="search-bar" placeholder="Search for a city...">
-        <div id="search-dropdown" class="dropdown hidden"></div>
+        <div id="search-bar-container">
+            <input type="text" id="search-bar" placeholder="Search for a city...">
+            <div id="search-dropdown" class="dropdown hidden"></div>
+        </div>
+        <button id="add-button" class="hidden">Add to Database</button>
     </div>
     
     
@@ -42,6 +43,11 @@
             <canvas id="tempChart" class="charts"></canvas>
         </div>
     </div>
+
+    <div id="weather-container">
+        <div id="weather-bar">
+            <div id="weather-bar-content"></div>
+        </div>
 
     <footer id="footer">
         <p>&copy; 2024 Weather Travel Planner</p>

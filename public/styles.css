@@ -32,17 +32,15 @@ body {
 
 #footer {
   color: white;
-  padding: 1em;
-  position: fixed;
+  position: static;
   bottom: 0;
-  width: 100%;
 }
 
 #weather-container {
   display: flex;
   justify-content: center;
-  flex-direction: column;
-  gap: 2em;
+  flex-direction: row;
+  gap: 6em;
   margin-top: 2em;
   color: white;
 }
@@ -75,14 +73,15 @@ body {
 
 #search-container {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  justify-content: center;
   align-items: center;
   position: relative;
-  
+  gap: 20px;
 }
 
 #search-bar {
-  width: 100%;
+  width: 300px;
   max-width: 400px; 
   padding: 10px; 
   box-sizing: border-box;
@@ -144,6 +143,7 @@ body {
   justify-content: center;
   gap: 2em;
   margin-top: 2em;
+  margin-bottom: 2em;
   color: white;
 }
 
@@ -152,5 +152,28 @@ body {
   max-width: 1200px;
   margin: 3em auto;
   z-index: 1;
+}
+
+#about-container {
+  margin: 0 auto;
+  max-width: 1200px;
+  color: white;
+}
+
+#add-button {
+  background-color: white;
+  color: black;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+#add-button:hover {
+  background-color: #f1f1f1;
 }
 

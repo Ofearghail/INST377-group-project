@@ -1,5 +1,7 @@
 const citySearch = document.getElementById("search-bar");
 const dropdown = document.getElementById("search-dropdown");
+let latitude = 0;
+let longitude = 0;
 
 const API_KEY = "CS6Lxw9hGRYvRGbvsAl9knIO3SpHccIn";
 
@@ -31,10 +33,12 @@ citySearch.addEventListener("input", async (e) => {
                 dropdownItem.textContent = `${city}, ${state}, ${country}`;
                 dropdownItem.addEventListener("click", async () => {
                     console.log(feature);
-                    const latitude = feature.geometry.coordinates[1];
-                    const longitude = feature.geometry.coordinates[0];
+                    latitude = feature.geometry.coordinates[1];
+                    longitude = feature.geometry.coordinates[0];
                     citySearch.value = `${city}, ${state}, ${country}`;
                     dropdown.classList.add("hidden");
+                    const addButton = document.getElementById("add-button");
+                    addButton.classList.remove("hidden");
                     const weatherData = await fetchWeatherForcast(latitude, longitude);
                     renderChart(weatherData);
                     generateMap(latitude, longitude);
@@ -53,8 +57,6 @@ citySearch.addEventListener("input", async (e) => {
 
     
 });
-
-
 
 function populateDropdown(cities) {
     dropdown.innerHTML = ""; 
@@ -204,3 +206,32 @@ function generateMap(latitude, longitude) {
         map.setView([latitude, longitude], 13);
     }
 }
+
+function addCity(cityName, latitude, longitude, state) {
+    fetch('/city', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            city_name: cityName,
+            latitude: latitude,
+            longitude: longitude,
+            state: state
+        })
+    }).then(response => response.text())
+    .then(data => {
+        console.log(data);
+    });
+}
+
+const addButton = document.getElementById("add-button");
+
+addButton.addEventListener("click", () => {
+    const cityName = citySearch.value.split(",")[0];
+    console.log("Adding city:", cityName, latitude, longitude);
+    const state = citySearch.value.split(",")[1].trim();
+    console.log("Adding state:", state);
+
+    addCity(cityName, latitude, longitude, state);
+});
