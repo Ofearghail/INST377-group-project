@@ -12,9 +12,16 @@ const supabase = supabaseClient.createClient(supabaseUrl, supabaseKey);
 app.use(bodyParser.json());
 app.use(express.static(__dirname + '/public'));
 
-
-app.get('/', (req, res) => {
+app.get('/home', (req, res) => {
     res.sendFile('public/index.html', { root: __dirname });
+});
+
+app.get('/about', (req, res) => {
+    res.sendFile('public/about.html', { root: __dirname });
+});
+
+app.get('/functionality', (req, res) => {
+    res.sendFile('public/functionality.html', { root: __dirname });
 });
 
 app.get('/cities', async (req, res) => {
