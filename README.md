@@ -17,3 +17,8 @@ Node is required to run the site and can be install using winget CLI tool with t
 ``` 
 winget install -e --id OpenJS.NodeJS
 ```
+
+or you can download the installer for your desired system at 
+```
+https://nodejs.org/en/download/prebuilt-installer
+```
