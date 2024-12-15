@@ -22,3 +22,15 @@ or you can download the installer for your desired system at
 ```
 https://nodejs.org/en/download/prebuilt-installer
 ```
+
+after installing node you should be able to run
+
+```
+npm start
+```
+in the root directory then go to 
+
+```
+localhost:3000
+```
+in in your browser.
