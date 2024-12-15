@@ -154,26 +154,16 @@ body {
   z-index: 1;
 }
 
-#about-container {
-  margin: 0 auto;
-  max-width: 1200px;
-  color: white;
-}
-
-#add-button {
-  background-color: white;
-  color: black;
-  border: none;
-  border-radius: 5px;
-  padding: 10px 20px;
-  text-align: center;
-  text-decoration: none;
-  font-size: 16px;
-  margin: 4px 2px;
-  cursor: pointer;
-}
-
-#add-button:hover {
-  background-color: #f1f1f1;
+.about-container {
+    position: fixed;
+    top: 25%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    justify-content: center;
+    padding: 50px;
+    margin: auto;
+    text-align: center;
+    vertical-align: middle;
+    color: white;
 }
 
