@@ -154,3 +154,16 @@ body {
   z-index: 1;
 }
 
+.about-container {
+    position: fixed;
+    top: 25%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    justify-content: center;
+    padding: 50px;
+    margin: auto;
+    text-align: center;
+    vertical-align: middle;
+    color: white;
+}
+
