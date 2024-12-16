@@ -13,8 +13,7 @@ async function getWeatherBarData() {
             console.log('Cities:', cities);
             renderWeatherBar(cities);
         });
-
-};
+}
 
 function renderWeatherBar(cities) { 
     const weatherBar = document.getElementById('weather-bar');

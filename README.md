@@ -12,6 +12,8 @@ The target browsers for this project are the most common desktop browsers in use
 
 # Developer Manual
 
+## Installation
+
 Node is required to run the site and can be install using winget CLI tool with the command 
 
 ``` 
@@ -34,3 +36,24 @@ in the root directory then go to
 localhost:3000
 ```
 in in your browser.
+
+## Endpoints
+
+There are a few endpoints in the application. 
+
+```
+/cities
+```
+This endpoint submits a GET request and retrieves the stored data from a Supabase database that contains city, latitude and longitude information.
+
+```
+/city
+```
+This endpoint submits a POST request and adds user searched cities to the Supabase database.
+
+There are also GET endpoints for each webpage on the site to serve the sites pages.
+
+## Future Development
+
+For future development storing user searches through cookies and displaying past searches is a good place to start.
+Expanding upon the application, incorporating features that allow users to make travel routes and displaying the weather along their routes during their travels.

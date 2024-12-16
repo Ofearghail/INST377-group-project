@@ -46,7 +46,7 @@ app.post('/city', async (req, res) => {
         .select();
 
     if (error) {
-        res.send('Error inserting city');
+        res.send('Error inserting city:' + error.message);
     } else {
         res.send('City inserted successfully');
     }
