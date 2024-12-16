@@ -39,6 +39,7 @@ function renderWeatherBar(cities) {
         const currentWeather = getWeather(cities[i].name, cities[i].latitude, cities[i].longitude);
 
         currentWeather.then(data => {
+            console.log('Data:', data);
             console.log('is day:', data.current.is_day);
 
             let weatherIcon = `<i class="wu `;

@@ -62,4 +62,8 @@ There are also GET endpoints for each webpage on the site to serve the sites pag
 
 For future development storing user searches through cookies and displaying past searches is a good place to start.
 Expanding upon the application, incorporating features that allow users to make travel routes and displaying the weather along their routes during their travels.
-Further implementation of the contact us form to support real-time notifications or sending emails.
+Further implementation of the contact us form to support real-time notifications or sending emails. 
+
+### Known Bugs
+
+* Some weather codes are not represented on the home page as a result, depending on the weather some weather icons may not render.
