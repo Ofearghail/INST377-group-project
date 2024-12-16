@@ -56,4 +56,4 @@ There are also GET endpoints for each webpage on the site to serve the sites pag
 ## Future Development
 
 For future development storing user searches through cookies and displaying past searches is a good place to start.
-Expanding upon the application, incorporating features that allow users to amke travel routes and displaying the weather along their routes during their travels.
+Expanding upon the application, incorporating features that allow users to make travel routes and displaying the weather along their routes during their travels.
