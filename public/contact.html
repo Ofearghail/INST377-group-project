@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>INST377 - Group Project</title>
     <link rel="stylesheet" href="./styles.css">
+    <script src="./contactUs.js" defer></script>
 </head>
 <body>
     <div id="header">
@@ -23,24 +24,29 @@
         <h3>Contact Form</h3>
 
         <div class="contact-container">
-            <form class="contact-details">
-                <label for="fname">Name</label>
-                <input type="text" id="fname" name="firstname" placeholder="Your name..">
+            <form id="contact-details">
+                <label for="name">Name</label>
+                <input type="text" id="name" name="firstname" placeholder="Your name.." required>
             
                 <label for="email">Email</label>
-                <input type="text" id="email" name="email" placeholder="Your email..">
+                <input type="text" id="email" name="email" placeholder="Your email.." required>
             
-                <label for="ohone">Phone Number</label>
-                <input type="text" id="phone" name="phonenumber" placeholder="Your phone number..">
+                <label for="phone">Phone Number</label>
+                <input type="text" id="phone" name="phonenumber" placeholder="Your phone number (optional)..">
             
                 <label for="subject">Subject</label>
-                <textarea id="subject" name="subject" placeholder="Message" style="height:200px"></textarea>
+                <textarea id="subject" name="subject" placeholder="Message" style="height:200px" required></textarea>
             
-                <input type="submit" value="Submit">
+                <input id="submit" type="submit" value="Submit">
             </form>
         </div>
-    
     </div>
+
+    <div id="failed-message" class="hidden">
+            <p>Failed to send message. Something went wrong.</p>
+    </div>
+
+
     </body>
     </html>
     

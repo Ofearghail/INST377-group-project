@@ -51,9 +51,15 @@ This endpoint submits a GET request and retrieves the stored data from a Supabas
 ```
 This endpoint submits a POST request and adds user searched cities to the Supabase database.
 
+```
+/contactUs
+```
+The contact form submits a POST request and adds the contact information the a Supabase database for future reference.
+
 There are also GET endpoints for each webpage on the site to serve the sites pages.
 
 ## Future Development
 
 For future development storing user searches through cookies and displaying past searches is a good place to start.
 Expanding upon the application, incorporating features that allow users to make travel routes and displaying the weather along their routes during their travels.
+Further implementation of the contact us form to support real-time notifications or sending emails.

@@ -24,6 +24,10 @@ app.get('/functionality', (req, res) => {
     res.sendFile('public/functionality.html', { root: __dirname });
 });
 
+app.get('/contact', (req, res) => {
+    res.sendFile('public/contact.html', { root: __dirname });
+});
+
 app.get('/cities', async (req, res) => {
     const { data, error } = await supabase
         .from('cities')
@@ -49,6 +53,25 @@ app.post('/city', async (req, res) => {
         res.send('Error inserting city:' + error.message);
     } else {
         res.send('City inserted successfully');
+    }
+});
+
+app.post('/contactUs', async (req, res) => {
+    console.log('Request body:', req.body);
+    const name = req.body.name;
+    const email = req.body.email;
+    const phone = req.body.phone;
+    const subject = req.body.subject;
+
+    const {data, error} = await supabase
+        .from('contactForm')
+        .insert([{name: name, email: email, phone: phone, subject: subject}])
+        .select();
+
+    if (error) {
+        res.send('Error inserting contact:' + error.message);
+    } else {
+        res.send('Contact inserted successfully');
     }
 });
 
